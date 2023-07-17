@@ -21,7 +21,7 @@ namespace ManagerProfiles
     {
         MySQL mySQL;
         public ObjectsManager()
-        {
+        {x
             mySQL = new MySQL();
             InitializeComponent();
             authData.ContextMenuStrip = contextMenuStrip1;
