@@ -21,7 +21,7 @@ namespace ManagerProfiles
     {
         MySQL mySQL;
         public ObjectsManager()
-        {x
+        {
             mySQL = new MySQL();
             InitializeComponent();
             authData.ContextMenuStrip = contextMenuStrip1;
@@ -36,6 +36,8 @@ namespace ManagerProfiles
             string SQLData = "SELECT auth.id, object.name, auth.step, auth.site, auth.login, auth.password, auth.status FROM auth, object WHERE auth.id_object = object.id";
             DataTable datatable = mySQL.GetDataTableSQL(SQLData);
             datatable.Columns["id"].ColumnName = "ID";
+
+
             datatable.Columns["name"].ColumnName = "Obj name";
             datatable.Columns["step"].ColumnName = "Step";
             datatable.Columns["login"].ColumnName = "Логин";
@@ -161,6 +163,10 @@ namespace ManagerProfiles
         private void ChangeStatus(string bd, string id, string status)
         {
             mySQL.SendSQL("UPDATE " + bd + " SET status = '" + status + "' WHERE id = " + id);
+        }
+        private void sitesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
