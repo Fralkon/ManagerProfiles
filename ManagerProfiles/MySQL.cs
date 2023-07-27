@@ -77,9 +77,9 @@ namespace ManagerProfiles
         //private string password = ""; // Пароль для подключения
 
         private string serverName = "astf3-stp5"; // Адрес сервера (для локальной базы пишите "localhost")
-        private string userName = "zabbix"; // Имя пользователя
+        private string userName = "root"; // Имя пользователя
         private string dbName = "clicker"; //Имя базы данных
-        private string password = "Ussd1801"; // Пароль для подключения
+        private string password = "Fralkon"; // Пароль для подключения
         public void WaitConnectToBD()
         {
             Console.WriteLine("Wait connection BD.");

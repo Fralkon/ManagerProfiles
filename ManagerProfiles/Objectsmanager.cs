@@ -1,6 +1,7 @@
 using System.Data;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ManagerProfiles
 {
@@ -30,14 +31,44 @@ namespace ManagerProfiles
             UpDateTable();
             UpDateTableObject();
             UpDateTableStep();
+            using (DataTable dataTable = mySQL.GetDataTableSQL("SELECT DISTINCT name FROM object WHERE name NOT LIKE 'Telegram' ORDER BY name"))
+            {
+                mashineComboBox.Items.Add("");
+                foreach (DataRow dr in dataTable.Rows)
+                    mashineComboBox.Items.Add(dr[0].ToString());
+            }
+            using (DataTable dataTable = mySQL.GetDataTableSQL("SELECT DISTINCT step FROM step ORDER BY step"))
+            {
+                stepComboBox.Items.Add("");
+                foreach (DataRow dr in dataTable.Rows)
+                    stepComboBox.Items.Add(dr[0].ToString());
+            }
+            using (DataTable dataTable = mySQL.GetDataTableSQL("SELECT DISTINCT site FROM auth ORDER BY site"))
+            {
+                siteComboBox.Items.Add("");
+                foreach (DataRow dr in dataTable.Rows)
+                    siteComboBox.Items.Add(dr[0].ToString());
+            }
+            using (DataTable dataTable = mySQL.GetDataTableSQL("SELECT DISTINCT status FROM auth ORDER BY status"))
+            {
+                statusComboBox.Items.Add("");
+                foreach (DataRow dr in dataTable.Rows)
+                    statusComboBox.Items.Add(dr[0].ToString());
+            }
         }
         private void UpDateTable()
         {
             string SQLData = "SELECT auth.id, object.name, auth.step, auth.site, auth.login, auth.password, auth.status FROM auth, object WHERE auth.id_object = object.id";
+            if (mashineComboBox.Text != "")
+                SQLData += " AND object.name = '" + mashineComboBox.Text + "'";
+            if (stepComboBox.Text != "")
+                SQLData += " AND auth.step = " + stepComboBox.Text;
+            if (siteComboBox.Text != "")
+                SQLData += " AND auth.site = '"+ siteComboBox.Text +"'";
+            if (statusComboBox.Text != "")
+                SQLData += " AND auth.status = '"+ statusComboBox.Text +"'";
             DataTable datatable = mySQL.GetDataTableSQL(SQLData);
             datatable.Columns["id"].ColumnName = "ID";
-
-
             datatable.Columns["name"].ColumnName = "Obj name";
             datatable.Columns["step"].ColumnName = "Step";
             datatable.Columns["login"].ColumnName = "Логин";
@@ -167,6 +198,10 @@ namespace ManagerProfiles
         private void sitesToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+        private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpDateTable();
         }
     }
 }

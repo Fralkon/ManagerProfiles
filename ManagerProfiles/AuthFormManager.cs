@@ -62,12 +62,10 @@ namespace ManagerProfiles
                 }
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             if (stepTextBox.Text.Length == 0)
@@ -120,9 +118,8 @@ namespace ManagerProfiles
                     siteComboBox.Text + "','" +
                     statusComboBox.Text + "' , 0 , 0)");
             else
-                mySQL.SendSQL("UPDATE auth SET id_object = " + idObj +
-                    " , step = '" + stepTextBox.Text +
-                    " , login = '" + loginTextBox.Text +
+                mySQL.SendSQL("UPDATE auth SET step = " + stepTextBox.Text +
+                    ", login = '" + loginTextBox.Text +
                     "' , password = '" + passTextBox.Text +
                     "' , site = '" + siteComboBox.Text +
                     "' , status = '" + statusComboBox.Text + "' WHERE id = " + idAuth);

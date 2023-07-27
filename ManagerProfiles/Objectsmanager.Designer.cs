@@ -32,6 +32,8 @@
             authData = new DataGridView();
             menuStrip1 = new MenuStrip();
             файлToolStripMenuItem = new ToolStripMenuItem();
+            settingToolStripMenuItem = new ToolStripMenuItem();
+            sitesToolStripMenuItem = new ToolStripMenuItem();
             contextMenuStrip1 = new ContextMenuStrip(components);
             создатьToolStripMenuItem = new ToolStripMenuItem();
             изменитьToolStripMenuItem = new ToolStripMenuItem();
@@ -52,8 +54,10 @@
             создатьToolStripMenuItem2 = new ToolStripMenuItem();
             изменитьToolStripMenuItem2 = new ToolStripMenuItem();
             удалитьToolStripMenuItem2 = new ToolStripMenuItem();
-            settingToolStripMenuItem = new ToolStripMenuItem();
-            sitesToolStripMenuItem = new ToolStripMenuItem();
+            mashineComboBox = new ComboBox();
+            stepComboBox = new ComboBox();
+            siteComboBox = new ComboBox();
+            statusComboBox = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)authData).BeginInit();
             menuStrip1.SuspendLayout();
             contextMenuStrip1.SuspendLayout();
@@ -72,14 +76,14 @@
             authData.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             authData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             authData.BackgroundColor = SystemColors.ButtonFace;
-            authData.Location = new Point(325, 53);
+            authData.Location = new Point(325, 75);
             authData.MultiSelect = false;
             authData.Name = "authData";
             authData.ReadOnly = true;
             authData.RowHeadersVisible = false;
             authData.RowTemplate.Height = 25;
             authData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            authData.Size = new Size(546, 535);
+            authData.Size = new Size(546, 513);
             authData.TabIndex = 5;
             // 
             // menuStrip1
@@ -96,6 +100,20 @@
             файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             файлToolStripMenuItem.Size = new Size(48, 20);
             файлToolStripMenuItem.Text = "Файл";
+            // 
+            // settingToolStripMenuItem
+            // 
+            settingToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { sitesToolStripMenuItem });
+            settingToolStripMenuItem.Name = "settingToolStripMenuItem";
+            settingToolStripMenuItem.Size = new Size(56, 20);
+            settingToolStripMenuItem.Text = "Setting";
+            // 
+            // sitesToolStripMenuItem
+            // 
+            sitesToolStripMenuItem.Name = "sitesToolStripMenuItem";
+            sitesToolStripMenuItem.Size = new Size(98, 22);
+            sitesToolStripMenuItem.Text = "Sites";
+            sitesToolStripMenuItem.Click += sitesToolStripMenuItem_Click;
             // 
             // contextMenuStrip1
             // 
@@ -148,7 +166,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(325, 35);
+            label1.Location = new Point(325, 57);
             label1.Name = "label1";
             label1.Size = new Size(123, 15);
             label1.TabIndex = 7;
@@ -163,20 +181,20 @@
             objectsData.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             objectsData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             objectsData.BackgroundColor = SystemColors.ButtonFace;
-            objectsData.Location = new Point(12, 53);
+            objectsData.Location = new Point(12, 75);
             objectsData.MultiSelect = false;
             objectsData.Name = "objectsData";
             objectsData.ReadOnly = true;
             objectsData.RowHeadersVisible = false;
             objectsData.RowTemplate.Height = 25;
             objectsData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            objectsData.Size = new Size(307, 535);
+            objectsData.Size = new Size(307, 513);
             objectsData.TabIndex = 8;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 35);
+            label2.Location = new Point(12, 57);
             label2.Name = "label2";
             label2.Size = new Size(47, 15);
             label2.TabIndex = 9;
@@ -218,20 +236,20 @@
             stepSettingData.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             stepSettingData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             stepSettingData.BackgroundColor = SystemColors.ButtonFace;
-            stepSettingData.Location = new Point(877, 53);
+            stepSettingData.Location = new Point(877, 75);
             stepSettingData.MultiSelect = false;
             stepSettingData.Name = "stepSettingData";
             stepSettingData.ReadOnly = true;
             stepSettingData.RowHeadersVisible = false;
             stepSettingData.RowTemplate.Height = 25;
             stepSettingData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            stepSettingData.Size = new Size(413, 535);
+            stepSettingData.Size = new Size(413, 513);
             stepSettingData.TabIndex = 10;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(877, 35);
+            label3.Location = new Point(877, 57);
             label3.Name = "label3";
             label3.Size = new Size(69, 15);
             label3.TabIndex = 11;
@@ -264,25 +282,55 @@
             удалитьToolStripMenuItem2.Text = "Удалить";
             удалитьToolStripMenuItem2.Click += удалитьToolStripMenuItem2_Click;
             // 
-            // settingToolStripMenuItem
+            // mashineComboBox
             // 
-            settingToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { sitesToolStripMenuItem });
-            settingToolStripMenuItem.Name = "settingToolStripMenuItem";
-            settingToolStripMenuItem.Size = new Size(56, 20);
-            settingToolStripMenuItem.Text = "Setting";
+            mashineComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            mashineComboBox.FormattingEnabled = true;
+            mashineComboBox.Location = new Point(325, 31);
+            mashineComboBox.Name = "mashineComboBox";
+            mashineComboBox.Size = new Size(121, 23);
+            mashineComboBox.TabIndex = 12;
+            mashineComboBox.SelectedIndexChanged += comboBox_SelectedIndexChanged;
             // 
-            // sitesToolStripMenuItem
+            // stepComboBox
             // 
-            sitesToolStripMenuItem.Name = "sitesToolStripMenuItem";
-            sitesToolStripMenuItem.Size = new Size(180, 22);
-            sitesToolStripMenuItem.Text = "Sites";
-            sitesToolStripMenuItem.Click += sitesToolStripMenuItem_Click;
+            stepComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            stepComboBox.FormattingEnabled = true;
+            stepComboBox.Location = new Point(468, 31);
+            stepComboBox.Name = "stepComboBox";
+            stepComboBox.Size = new Size(121, 23);
+            stepComboBox.TabIndex = 13;
+            stepComboBox.SelectedIndexChanged += comboBox_SelectedIndexChanged;
+            // 
+            // siteComboBox
+            // 
+            siteComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            siteComboBox.FormattingEnabled = true;
+            siteComboBox.Location = new Point(612, 31);
+            siteComboBox.Name = "siteComboBox";
+            siteComboBox.Size = new Size(121, 23);
+            siteComboBox.TabIndex = 14;
+            siteComboBox.SelectedIndexChanged += comboBox_SelectedIndexChanged;
+            // 
+            // statusComboBox
+            // 
+            statusComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            statusComboBox.FormattingEnabled = true;
+            statusComboBox.Location = new Point(750, 31);
+            statusComboBox.Name = "statusComboBox";
+            statusComboBox.Size = new Size(121, 23);
+            statusComboBox.TabIndex = 15;
+            statusComboBox.SelectedIndexChanged += comboBox_SelectedIndexChanged;
             // 
             // ObjectsManager
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1302, 600);
+            Controls.Add(statusComboBox);
+            Controls.Add(siteComboBox);
+            Controls.Add(stepComboBox);
+            Controls.Add(mashineComboBox);
             Controls.Add(label3);
             Controls.Add(stepSettingData);
             Controls.Add(label2);
@@ -332,5 +380,9 @@
         private ToolStripMenuItem deactivateToolStripMenuItem;
         private ToolStripMenuItem settingToolStripMenuItem;
         private ToolStripMenuItem sitesToolStripMenuItem;
+        private ComboBox mashineComboBox;
+        private ComboBox stepComboBox;
+        private ComboBox siteComboBox;
+        private ComboBox statusComboBox;
     }
 }
