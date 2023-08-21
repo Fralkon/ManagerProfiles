@@ -23,7 +23,7 @@ namespace ManagerProfiles
         MySQL mySQL;
         public ObjectsManager()
         {
-            mySQL = new MySQL();
+            mySQL = new MySQL("ManagerProfiles");
             InitializeComponent();
             authData.ContextMenuStrip = contextMenuStrip1;
             objectsData.ContextMenuStrip = contextMenuStripObjects;
