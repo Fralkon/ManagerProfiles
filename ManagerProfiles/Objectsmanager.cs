@@ -1,7 +1,4 @@
 using System.Data;
-using System.Drawing.Drawing2D;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ManagerProfiles
 {
@@ -16,7 +13,8 @@ namespace ManagerProfiles
         WebofSar,
         Losena,
         SeoClub,
-        VipClick
+        VipClick,
+        Adaso
     }
     public partial class ObjectsManager : Form
     {
@@ -64,9 +62,9 @@ namespace ManagerProfiles
             if (stepComboBox.Text != "")
                 SQLData += " AND auth.step = " + stepComboBox.Text;
             if (siteComboBox.Text != "")
-                SQLData += " AND auth.site = '"+ siteComboBox.Text +"'";
+                SQLData += " AND auth.site = '" + siteComboBox.Text + "'";
             if (statusComboBox.Text != "")
-                SQLData += " AND auth.status = '"+ statusComboBox.Text +"'";
+                SQLData += " AND auth.status = '" + statusComboBox.Text + "'";
             DataTable datatable = mySQL.GetDataTableSQL(SQLData);
             datatable.Columns["id"].ColumnName = "ID";
             datatable.Columns["name"].ColumnName = "Obj name";
@@ -202,6 +200,13 @@ namespace ManagerProfiles
         private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpDateTable();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            UpDateTable();
+            UpDateTableObject();
+            UpDateTableStep();
         }
     }
 }

@@ -58,6 +58,7 @@
             stepComboBox = new ComboBox();
             siteComboBox = new ComboBox();
             statusComboBox = new ComboBox();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)authData).BeginInit();
             menuStrip1.SuspendLayout();
             contextMenuStrip1.SuspendLayout();
@@ -322,11 +323,22 @@
             statusComboBox.TabIndex = 15;
             statusComboBox.SelectedIndexChanged += comboBox_SelectedIndexChanged;
             // 
+            // button1
+            // 
+            button1.Location = new Point(1215, 31);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 16;
+            button1.Text = "Refresh";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // ObjectsManager
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1302, 600);
+            Controls.Add(button1);
             Controls.Add(statusComboBox);
             Controls.Add(siteComboBox);
             Controls.Add(stepComboBox);
@@ -384,5 +396,6 @@
         private ComboBox stepComboBox;
         private ComboBox siteComboBox;
         private ComboBox statusComboBox;
+        private Button button1;
     }
 }
